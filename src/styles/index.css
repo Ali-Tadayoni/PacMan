@@ -1,0 +1,17 @@
+html {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: black;
+}
+
+.canvas {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.image-container {
+  display: none;
+}
