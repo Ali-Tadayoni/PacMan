@@ -5,6 +5,8 @@ html {
 body {
   margin: 0;
   background-color: black;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .canvas {
