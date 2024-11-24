@@ -93,7 +93,7 @@ class Pacman {
 
     canvasContext.drawImage(
       pacmanFrames,
-      (this.currentFrame - 1) / oneBlockSize,
+      (this.currentFrame - 1) * oneBlockSize,
       0,
       oneBlockSize,
       oneBlockSize,
