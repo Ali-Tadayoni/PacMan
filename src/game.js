@@ -5,7 +5,7 @@ const canvasContext = canvas.getContext("2d");
 const pacmanFrames = $.getElementById("animations");
 const ghostFrames = $.getElementById("ghost");
 
-const createReact = (x, y, width, height, color) => {
+const createRect = (x, y, width, height, color) => {
   canvasContext.fillStyle = color;
   canvasContext.fillRect(x, y, width, height);
 };
@@ -17,6 +17,8 @@ let wallColor = "#342DCA";
 let wallSpaceWidth = oneBlockSize / 1.3; // 18.18 // if it goes bigger, the black blocks gets smaller
 let wallOfset = (oneBlockSize - wallSpaceWidth) / 2; // 0.9
 let wallInnerColor = "black";
+let foodColor = "#FEB897";
+let score = 0;
 
 const DIRECTION_RIGHT = 4;
 const DIRECTION_UP = 3;
@@ -56,22 +58,38 @@ let gameLoop = () => {
 
 let update = () => {
   pacman.moveProcess();
+  pacman.eat();
 };
-
-let gameInterval = setInterval(gameLoop, 1000 / fps);
+let drawFoods = () => {
+  for (let i = 0; i < map.length; i++) {
+    for (let j = 0; j < map[0].length; j++) {
+      if (map[i][j] == 2) {
+        createRect(
+          j * oneBlockSize + oneBlockSize / 3,
+          i * oneBlockSize + oneBlockSize / 3,
+          oneBlockSize / 3,
+          oneBlockSize / 3,
+          foodColor
+        );
+      }
+    }
+  }
+};
 
 let draw = () => {
-  createReact(0, 0, canvas.width, canvas.height, "black");
+  createRect(0, 0, canvas.width, canvas.height, "black");
   drawWalls();
+  drawFoods();
   pacman.draw();
 };
+let gameInterval = setInterval(gameLoop, 1000 / fps);
 
 let drawWalls = () => {
   for (i = 0; i < map.length; i++) {
     for (j = 0; j < map[i].length; j++) {
       if (map[i][j] == 1) {
         // So this will be a wall
-        createReact(
+        createRect(
           j * oneBlockSize,
           i * oneBlockSize,
           oneBlockSize,
@@ -81,7 +99,7 @@ let drawWalls = () => {
       }
 
       if (j > 0 && map[i][j - 1] == 1) {
-        createReact(
+        createRect(
           j * oneBlockSize,
           i * oneBlockSize + wallOfset,
           wallSpaceWidth + wallOfset,
@@ -91,7 +109,7 @@ let drawWalls = () => {
       }
 
       if (j < map[0].length - 1 && map[i][j + 1] == 1) {
-        createReact(
+        createRect(
           j * oneBlockSize + wallOfset,
           i * oneBlockSize + wallOfset,
           wallSpaceWidth + wallOfset,
@@ -100,7 +118,7 @@ let drawWalls = () => {
         );
       }
       if (i > 0 && map[i - 1][j] == 1) {
-        createReact(
+        createRect(
           j * oneBlockSize + wallOfset,
           i * oneBlockSize,
           wallSpaceWidth,
@@ -109,7 +127,7 @@ let drawWalls = () => {
         );
       }
       if (i < map.length - 1 && map[i + 1][j] == 1) {
-        createReact(
+        createRect(
           j * oneBlockSize + wallOfset,
           i * oneBlockSize + wallOfset,
           wallSpaceWidth,
