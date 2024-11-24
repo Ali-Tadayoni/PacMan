@@ -21,6 +21,7 @@ class Pacman {
 
     if (this.checkCollisions()) {
       this.moveBackwards();
+      return;
     }
   }
 
@@ -28,16 +29,16 @@ class Pacman {
 
   moveBackwards() {
     switch (this.direction) {
-      case DIRECTION_RIGHT:
+      case DIRECTION_RIGHT: // Right
         this.x -= this.speed;
         break;
-      case DIRECTION_LEFT:
-        this.x += this.speed;
-        break;
-      case DIRECTION_UP:
+      case DIRECTION_UP: // Up
         this.y += this.speed;
         break;
-      case DIRECTION_BOTTOM:
+      case DIRECTION_LEFT: // Left
+        this.x += this.speed;
+        break;
+      case DIRECTION_BOTTOM: // Bottom
         this.y -= this.speed;
         break;
     }
@@ -45,16 +46,16 @@ class Pacman {
 
   moveForwards() {
     switch (this.direction) {
-      case DIRECTION_RIGHT:
+      case DIRECTION_RIGHT: // Right
         this.x += this.speed;
         break;
-      case DIRECTION_LEFT:
-        this.x -= this.speed;
-        break;
-      case DIRECTION_UP:
+      case DIRECTION_UP: // Up
         this.y -= this.speed;
         break;
-      case DIRECTION_BOTTOM:
+      case DIRECTION_LEFT: // Left
+        this.x -= this.speed;
+        break;
+      case DIRECTION_BOTTOM: // Bottom
         this.y += this.speed;
         break;
     }

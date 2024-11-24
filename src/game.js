@@ -18,9 +18,9 @@ let wallSpaceWidth = oneBlockSize / 1.3; // 18.18 // if it goes bigger, the blac
 let wallOfset = (oneBlockSize - wallSpaceWidth) / 2; // 0.9
 let wallInnerColor = "black";
 
-const DIRECTION_LEFT = 4;
-const DIRECTION_RIGHT = 3;
-const DIRECTION_UP = 2;
+const DIRECTION_RIGHT = 4;
+const DIRECTION_UP = 3;
+const DIRECTION_LEFT = 2;
 const DIRECTION_BOTTOM = 1;
 
 let map = [
