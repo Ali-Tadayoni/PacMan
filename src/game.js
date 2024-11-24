@@ -71,8 +71,8 @@ let randomTargetsForGhosts = [
 ];
 
 let gameLoop = () => {
-  update();
   draw();
+  update();
 };
 
 let update = () => {
@@ -95,7 +95,13 @@ let restartGame = () => {
   }
 };
 let gameOver = () => {
+  drawGameOver();
   clearInterval(gameInterval);
+};
+let drawGameOver = () => {
+  canvasContext.font = "20px Emulogic";
+  canvasContext.fillStyle = "white";
+  canvasContext.fillText("Game Over!", 150, 200);
 };
 
 let drawLives = () => {
